@@ -27,3 +27,11 @@ jobs:
           key: ${{ secrets.BACKEND_REPO_SSH_KEY }}  # Usa las claves SSH generadas para acceso al backend
           remote_path: 'https://github.com/Growth-Software/backend/views'  # Ruta en el servidor o directorio del repositorio backend
           source: 'build/'  # Carpeta en frontend que deseas copiar
+      
+      - name: Enviar evento repository_dispatch al backend
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://github.com/Growth-Software/backend/dispatches \
+            -d '{"event_type": "frontend_build_deploy"}'
