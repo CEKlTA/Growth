@@ -1,12 +1,11 @@
-# .github/workflows/deploy-build-to-backend.yml
 name: Deploy Build to Backend
 
 on:
   push:
     paths:
-      - 'build/**'  # Solo se ejecutará si hay cambios dentro de la carpeta build
+      - 'build/**'
     branches:
-      - main  # O la rama principal que estés usando
+      - main
 
 jobs:
   deploy:
